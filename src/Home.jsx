@@ -12,11 +12,11 @@ const lines = [
 const getAssetUrl = (path) => `${import.meta.env.BASE_URL}${path.replace(/^\//, '')}`;
 
 const desktopVideos = [
-  getAssetUrl('/LongFrom1.mp4'),
-  getAssetUrl('/LongFrom2.mp4')
+  'https://github.com/RealRuthvik/ConC/releases/download/v1.0-assets/LongFrom1.mp4',
+  'https://github.com/RealRuthvik/ConC/releases/download/v1.0-assets/LongFrom2.mp4'
 ];
 
-const mobileVideo = getAssetUrl('/ShortFrom1.mp4');
+const mobileVideo = 'https://github.com/RealRuthvik/ConC/releases/download/v1.0-assets/ShortFrom1.mp4';
 
 const ImageCarousel = ({ items, intervalMs = 3500, maxWidth = '900px' }) => {
   const [index, setIndex] = useState(0);
