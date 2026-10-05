@@ -9,12 +9,14 @@ const lines = [
   "There is no perfect man. There is only a better version of you."
 ];
 
+const getAssetUrl = (path) => `${import.meta.env.BASE_URL}${path.replace(/^\//, '')}`;
+
 const desktopVideos = [
-  '/LongFrom1.mp4',
-  '/LongFrom2.mp4'
+  getAssetUrl('/LongFrom1.mp4'),
+  getAssetUrl('/LongFrom2.mp4')
 ];
 
-const mobileVideo = '/ShortFrom1.mp4';
+const mobileVideo = getAssetUrl('/ShortFrom1.mp4');
 
 const ImageCarousel = ({ items, intervalMs = 3500, maxWidth = '900px' }) => {
   const [index, setIndex] = useState(0);
@@ -149,22 +151,22 @@ function Home() {
 
   const section3Carousel = [
     {
-      image: '/homepage-image-1.png',
+      image: getAssetUrl('/homepage-image-1.png'),
       caption: 'Studies show women are attracted to more than just a man’s face. Click to view the study.',
       link: 'https://pubmed.ncbi.nlm.nih.gov/35179485/'
     },
     {
-      image: '/homepage-image-3.png',
+      image: getAssetUrl('/homepage-image-3.png'),
       caption: 'Stop wasting time on trends that deliver zero results. Click to view the study.',
       link: 'https://pubmed.ncbi.nlm.nih.gov/35179485/'
     }
   ];
 
   const section4Carousel = [
-    { image: '/homepage-image-4.png' },
-    { image: '/homepage-image-6.png' },
-    { image: '/homepage-image-5.png' },
-    { image: '/homepage-image-7.png' }
+    { image: getAssetUrl('/homepage-image-4.png') },
+    { image: getAssetUrl('/homepage-image-6.png') },
+    { image: getAssetUrl('/homepage-image-5.png') },
+    { image: getAssetUrl('/homepage-image-7.png') }
   ];
 
   useEffect(() => {
@@ -373,17 +375,17 @@ function Home() {
 
             <div className="benefits-grid">
               <div className="benefit-item">
-                <img src="/hgirl1.png" alt="Hotter Women" className="benefit-img woman-img" draggable={false} />
+                <img src={getAssetUrl('/hgirl1.png')} alt="Hotter Women" className="benefit-img woman-img" draggable={false} />
                 <h3 className="benefit-title">HOTTER WOMEN</h3>
               </div>
 
               <div className="benefit-item">
-                <img src="/rich1.png" alt="More Money" className="benefit-img" draggable={false} />
+                <img src={getAssetUrl('/rich1.png')} alt="More Money" className="benefit-img" draggable={false} />
                 <h3 className="benefit-title">MORE MONEY</h3>
               </div>
 
               <div className="benefit-item">
-                <img src="/conf1.png" alt="More Confidence" className="benefit-img" draggable={false} />
+                <img src={getAssetUrl('/conf1.png')} alt="More Confidence" className="benefit-img" draggable={false} />
                 <h3 className="benefit-title">MORE CONFIDENCE</h3>
               </div>
             </div>
@@ -398,7 +400,7 @@ function Home() {
 
             <div className="cringe-image-box">
               <div className="cringe-image-wrapper">
-                <img src="/Final.png" alt="Think this is cringe?" className="cringe-image" draggable={false} />
+                <img src={getAssetUrl('/Final.png')} alt="Think this is cringe?" className="cringe-image" draggable={false} />
               </div>
               <div className="cringe-caption-row">
                 <button 
