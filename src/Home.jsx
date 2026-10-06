@@ -28,8 +28,8 @@ const ImageCarousel = ({ items, intervalMs = 3500, maxWidth = '900px' }) => {
     let interval;
     if (playing) {
       interval = setInterval(() => {
-        setTimeLeft((prev) => prev - 100);
-      }, 100);
+        setTimeLeft((prev) => Math.max(0, prev - 50));
+      }, 50);
     }
     return () => clearInterval(interval);
   }, [playing]);
@@ -52,12 +52,44 @@ const ImageCarousel = ({ items, intervalMs = 3500, maxWidth = '900px' }) => {
   const togglePlay = () => setPlaying(!playing);
 
   const currentItem = items[index];
+  const radius = 8.5;
+  const circumference = 2 * Math.PI * radius;
+  const progress = Math.min(1, Math.max(0, (intervalMs - timeLeft) / intervalMs));
+  const strokeDashoffset = circumference * (1 - progress);
 
   const content = (
     <>
       <div className="section-image-wrapper">
         <img src={currentItem.image} alt={currentItem.caption || "Carousel slide"} className="section-image" draggable={false} />
-        <div className="carousel-timer">{(Math.max(0, timeLeft) / 1000).toFixed(1)}</div>
+        {playing && (
+          <div className="carousel-timer" aria-label="Slide timer">
+            <svg width="22" height="22" viewBox="0 0 24 24" style={{ display: 'block', filter: 'drop-shadow(0 1px 3px rgba(0,0,0,0.6))' }}>
+              <circle
+                cx="12"
+                cy="12"
+                r={radius}
+                fill="rgba(0, 0, 0, 0.35)"
+                stroke="rgba(255, 255, 255, 0.3)"
+                strokeWidth="2.5"
+              />
+              <circle
+                cx="12"
+                cy="12"
+                r={radius}
+                fill="none"
+                stroke="#ffffff"
+                strokeWidth="2.5"
+                strokeDasharray={circumference}
+                strokeDashoffset={strokeDashoffset}
+                strokeLinecap="round"
+                transform="rotate(-90 12 12)"
+                style={{
+                  transition: timeLeft >= intervalMs - 50 ? 'none' : 'stroke-dashoffset 0.05s linear'
+                }}
+              />
+            </svg>
+          </div>
+        )}
         <div className="carousel-controls">
           <button className="control-btn" aria-label="Previous slide" onClick={(e) => { e.preventDefault(); handlePrev(); }}>
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
@@ -78,8 +110,8 @@ const ImageCarousel = ({ items, intervalMs = 3500, maxWidth = '900px' }) => {
         {currentItem.caption ? (
           <p className="grid-item-caption" style={{ margin: 0, textAlign: 'left' }}>{currentItem.caption}</p>
         ) : <div />}
-        <button 
-          className="disclaimer-link" 
+        <button
+          className="disclaimer-link"
           onClick={(e) => { e.preventDefault(); setModalOpen(true); }}
           style={{ background: 'none', border: 'none', color: 'rgba(255,255,255,0.4)', fontSize: '0.75rem', cursor: 'pointer', padding: 0, flexShrink: 0, marginLeft: '1rem', textDecoration: 'none' }}
         >
@@ -131,12 +163,13 @@ function Home() {
   });
   const [desktopIndex, setDesktopIndex] = useState(0);
 
-  const [isMuted, setIsMuted] = useState(true); 
+  const [isMuted, setIsMuted] = useState(true);
   const [isPlaying, setIsPlaying] = useState(true);
   const [isVideoReady, setIsVideoReady] = useState(false);
   const [initialDelayPassed, setInitialDelayPassed] = useState(false);
   const [videoCanPlay, setVideoCanPlay] = useState(false);
   const [cringeModalOpen, setCringeModalOpen] = useState(false);
+  const [benefitsModalOpen, setBenefitsModalOpen] = useState(false);
 
   const videoRef = useRef(null);
 
@@ -185,12 +218,12 @@ function Home() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setFade(false); 
+      setFade(false);
       setTimeout(() => {
-        setIndex((prevIndex) => (prevIndex + 1) % lines.length); 
-        setFade(true); 
-      }, 500); 
-    }, 10000); 
+        setIndex((prevIndex) => (prevIndex + 1) % lines.length);
+        setFade(true);
+      }, 500);
+    }, 10000);
     return () => clearInterval(interval);
   }, []);
 
@@ -236,7 +269,7 @@ function Home() {
   useEffect(() => {
     if (videoRef.current) {
       videoRef.current.muted = isMuted;
-      videoRef.current.volume = 0.3; 
+      videoRef.current.volume = 0.3;
     }
   }, [isMuted]);
 
@@ -282,7 +315,7 @@ function Home() {
         <div className="hero-video-side">
           <div className="video-wrapper-container">
             <div className="video-wrapper">
-              <img 
+              <img
                 src={getAssetUrl('/placeholder.png')}
                 alt="Hercules statue"
                 className={`hero-placeholder-img ${!isVideoReady ? 'placeholder-visible' : 'placeholder-hidden'}`}
@@ -290,7 +323,7 @@ function Home() {
                 loading="eager"
                 fetchPriority="high"
               />
-              <a 
+              <a
                 href="https://www.youtube.com/@BenLionelScott"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -299,7 +332,7 @@ function Home() {
               >
                 Video by @BenLionelScott
               </a>
-              <video 
+              <video
                 ref={videoRef}
                 src={currentVideo}
                 preload="auto"
@@ -342,159 +375,201 @@ function Home() {
         </div>
       </section>
 
-        <section className="fourth-section">
+      <section className="fourth-section">
+        <div className="section-title-group">
+          <h2 className="section-title">
+            Your <span className="clickbait-red">DAD</span> is off the clock. We'll take it from here.
+          </h2>
+        </div>
+        <div className="carousel-wrapper-padding" style={{ width: '100%' }}>
+          <ImageCarousel items={section4Carousel} />
+        </div>
+      </section>
+
+      <section className="fundamentals-section">
+        <div className="fundamentals-container">
           <div className="section-title-group">
-            <h2 className="section-title">
-              YOUR <span className="clickbait-red">DAD'S</span> OFF THE CLOCK. WE'LL TAKE IT FROM HERE.
-            </h2>
+            <h2 className="section-title">You will learn the <span className="clickbait-red">EIGHT</span> fundamentals.</h2>
+            <p className="section-subtitle">Everything you need to <span className="clickbait-blue">look better</span>, <span className="clickbait-blue">feel better</span>, and <span className="clickbait-blue">live better</span>.</p>
           </div>
-          <div className="carousel-wrapper-padding" style={{ width: '100%' }}>
-            <ImageCarousel items={section4Carousel} />
-          </div>
-        </section>
 
-        <section className="third-section">
+          <div className="fundamentals-grid">
+            <div className="fundamental-box">
+              <img src={getAssetUrl('/groom.png')} alt="Grooming" className="fundamental-img" draggable={false} />
+              <div className="fundamental-overlay" />
+              <h3 className="fundamental-title">
+                <span>GROOMING</span>
+              </h3>
+            </div>
+
+            <div className="fundamental-box">
+              <img src={getAssetUrl('/phy.png')} alt="Physique" className="fundamental-img" draggable={false} />
+              <div className="fundamental-overlay" />
+              <h3 className="fundamental-title">
+                <span>PHYSIQUE</span>
+              </h3>
+            </div>
+
+            <div className="fundamental-box">
+              <img src={getAssetUrl('/Style.png')} alt="Style" className="fundamental-img" draggable={false} />
+              <div className="fundamental-overlay" />
+              <h3 className="fundamental-title">
+                <span>STYLE</span>
+              </h3>
+            </div>
+
+            <div className="fundamental-box">
+              <img src={getAssetUrl('/presence.png')} alt="Presence" className="fundamental-img" draggable={false} />
+              <div className="fundamental-overlay" />
+              <h3 className="fundamental-title">
+                <span>PRESENCE</span>
+              </h3>
+            </div>
+
+            <div className="fundamental-box">
+              <img src={getAssetUrl('/social.png')} alt="Social" className="fundamental-img" draggable={false} />
+              <div className="fundamental-overlay" />
+              <h3 className="fundamental-title">
+                <span>SOCIAL</span>
+              </h3>
+            </div>
+
+            <div className="fundamental-box">
+              <img src={getAssetUrl('/dating.png')} alt="Dating" className="fundamental-img" draggable={false} />
+              <div className="fundamental-overlay" />
+              <h3 className="fundamental-title">
+                <span>DATING</span>
+              </h3>
+            </div>
+
+            <div className="fundamental-box">
+              <img src={getAssetUrl('/mindset.png')} alt="Mindset" className="fundamental-img" draggable={false} />
+              <div className="fundamental-overlay" />
+              <h3 className="fundamental-title">
+                <span>MINDSET</span>
+              </h3>
+            </div>
+
+            <div className="fundamental-box">
+              <img src={getAssetUrl('/life.png')} alt="Life" className="fundamental-img" draggable={false} />
+              <div className="fundamental-overlay" />
+              <h3 className="fundamental-title">
+                <span>LIFE</span>
+              </h3>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="third-section">
+        <div className="section-title-group">
+          <h2 className="section-title">Know what works and what doesn't.</h2>
+        </div>
+        <div className="carousel-wrapper-padding" style={{ width: '100%' }}>
+          <ImageCarousel items={section3Carousel} />
+        </div>
+      </section>
+
+      <section className="benefits-section">
+        <div className="benefits-container">
           <div className="section-title-group">
-            <h2 className="section-title">Know what works and what doesn't.</h2>
+            <h2 className="section-title">WHAT DO YOU GET OUT OF THIS?</h2>
           </div>
-          <div className="carousel-wrapper-padding" style={{ width: '100%' }}>
-            <ImageCarousel items={section3Carousel} />
-          </div>
-        </section>
 
-        <section className="fundamentals-section">
-          <div className="fundamentals-container">
-            <div className="section-title-group">
-              <h2 className="section-title">MASTER THE <span className="clickbait-red">EIGHT FUNDAMENTALS</span>.</h2>
-              <p className="section-subtitle">Everything you need to <span className="clickbait-blue">look better</span>, <span className="clickbait-blue">feel better</span>, and <span className="clickbait-red">live better</span>.</p>
+          <div className="benefits-grid">
+            <div className="benefit-item">
+              <img src={getAssetUrl('/hgirl1.png')} alt="Hotter Women" className="benefit-img woman-img" draggable={false} />
+              <h3 className="benefit-title">More Dates</h3>
             </div>
 
-            <div className="fundamentals-grid">
-              <div className="fundamental-box">
-                <h3 className="fundamental-title">
-                  <span>GROOMING</span>
-                </h3>
-              </div>
+            <div className="benefit-item">
+              <img src={getAssetUrl('/rich1.png')} alt="More Money" className="benefit-img" draggable={false} />
+              <h3 className="benefit-title">More Money</h3>
+            </div>
 
-              <div className="fundamental-box">
-                <h3 className="fundamental-title">
-                  <span>PHYSIQUE</span>
-                </h3>
-              </div>
-
-              <div className="fundamental-box">
-                <h3 className="fundamental-title">
-                  <span>STYLE</span>
-                </h3>
-              </div>
-
-              <div className="fundamental-box">
-                <h3 className="fundamental-title">
-                  <span>PRESENCE</span>
-                </h3>
-              </div>
-
-              <div className="fundamental-box">
-                <h3 className="fundamental-title">
-                  <span>SOCIAL</span>
-                </h3>
-              </div>
-
-              <div className="fundamental-box">
-                <h3 className="fundamental-title">
-                  <span>DATING</span>
-                </h3>
-              </div>
-
-              <div className="fundamental-box">
-                <h3 className="fundamental-title">
-                  <span>MINDSET</span>
-                </h3>
-              </div>
-
-              <div className="fundamental-box">
-                <h3 className="fundamental-title">
-                  <span>LIFE</span>
-                </h3>
-              </div>
+            <div className="benefit-item">
+              <img src={getAssetUrl('/conf1.png')} alt="More Confidence" className="benefit-img" draggable={false} />
+              <h3 className="benefit-title">MORE CONFIDENCE</h3>
             </div>
           </div>
-        </section>
 
-        <section className="benefits-section">
-          <div className="benefits-container">
-            <div className="section-title-group">
-              <h2 className="section-title">WHAT DO YOU GET OUT OF THIS?</h2>
-            </div>
-
-            <div className="benefits-grid">
-              <div className="benefit-item">
-                <img src={getAssetUrl('/hgirl1.png')} alt="Hotter Women" className="benefit-img woman-img" draggable={false} />
-                <h3 className="benefit-title">HOTTER WOMEN</h3>
-              </div>
-
-              <div className="benefit-item">
-                <img src={getAssetUrl('/rich1.png')} alt="More Money" className="benefit-img" draggable={false} />
-                <h3 className="benefit-title">MORE MONEY</h3>
-              </div>
-
-              <div className="benefit-item">
-                <img src={getAssetUrl('/conf1.png')} alt="More Confidence" className="benefit-img" draggable={false} />
-                <h3 className="benefit-title">MORE CONFIDENCE</h3>
-              </div>
-            </div>
+          <div className="benefits-caption-row">
+            <button
+              className="disclaimer-link"
+              onClick={() => setBenefitsModalOpen(true)}
+            >
+              Credits & Disclaimer
+            </button>
           </div>
-        </section>
+        </div>
 
-        <section className="cringe-section">
-          <div className="cringe-container">
-            <div className="section-title-group">
-              <h2 className="section-title">THINK THIS IS CRINGE?</h2>
-            </div>
-
-            <div className="cringe-image-box">
-              <div className="cringe-image-wrapper">
-                <img src={getAssetUrl('/Final.png')} alt="Think this is cringe?" className="cringe-image" draggable={false} />
-              </div>
-              <div className="cringe-caption-row">
-                <button 
-                  className="disclaimer-link" 
-                  onClick={() => setCringeModalOpen(true)}
-                >
-                  Credits & Disclaimer
-                </button>
-              </div>
-            </div>
-
-            <div className="cringe-text-group">
-              <p className="cringe-text">
-                You've seen the "ALPHA" bullshit. The fake gurus. The rented Lambos. That's not us. We're here to help you improve your life. Still think it's cringe? That's fine. We're not here to impress you.
+        {benefitsModalOpen && (
+          <div className="modal-overlay" onClick={() => setBenefitsModalOpen(false)}>
+            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+              <h3 style={{ marginTop: 0, marginBottom: '1rem', color: '#fff', fontSize: '1.25rem' }}>Credits & Disclaimer</h3>
+              <p style={{ color: 'rgba(255, 255, 255, 0.7)', fontSize: '0.9rem', lineHeight: '1.5', marginBottom: '1rem' }}>
+                The visual content featured in this section has been curated from public platforms, including YouTube and Instagram, and subsequently modified for educational and illustrative purposes.
               </p>
+              <p style={{ color: 'rgba(255, 255, 255, 0.7)', fontSize: '0.9rem', lineHeight: '1.5', marginBottom: '2rem' }}>
+                We deeply respect the intellectual property of all original creators. Should any copyright holder wish to request the removal of their content or discuss compensation, please contact us and we will promptly address the request.
+              </p>
+              <button className="modal-close-btn" onClick={() => setBenefitsModalOpen(false)}>
+                Close
+              </button>
+            </div>
+          </div>
+        )}
+      </section>
+
+      <section className="cringe-section">
+        <div className="cringe-container">
+          <div className="section-title-group">
+            <h2 className="section-title">THINK THIS IS CRINGE?</h2>
+          </div>
+
+          <div className="cringe-image-box">
+            <div className="cringe-image-wrapper">
+              <img src={getAssetUrl('/Final.png')} alt="Think this is cringe?" className="cringe-image" draggable={false} />
+            </div>
+            <div className="cringe-caption-row">
+              <button
+                className="disclaimer-link"
+                onClick={() => setCringeModalOpen(true)}
+              >
+                Credits & Disclaimer
+              </button>
             </div>
           </div>
 
-          {cringeModalOpen && (
-            <div className="modal-overlay" onClick={() => setCringeModalOpen(false)}>
-              <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-                <h3 style={{ marginTop: 0, marginBottom: '1rem', color: '#fff', fontSize: '1.25rem' }}>Credits & Disclaimer</h3>
-                <p style={{ color: 'rgba(255, 255, 255, 0.7)', fontSize: '0.9rem', lineHeight: '1.5', marginBottom: '1rem' }}>
-                  The visual content featured in this section has been curated from public platforms, including YouTube and Instagram, and subsequently modified for educational and illustrative purposes.
-                </p>
-                <p style={{ color: 'rgba(255, 255, 255, 0.7)', fontSize: '0.9rem', lineHeight: '1.5', marginBottom: '2rem' }}>
-                  We deeply respect the intellectual property of all original creators. Should any copyright holder wish to request the removal of their content or discuss compensation, please contact us and we will promptly address the request.
-                </p>
-                <button className="modal-close-btn" onClick={() => setCringeModalOpen(false)}>
-                  Close
-                </button>
-              </div>
-            </div>
-          )}
-        </section>
+          <div className="cringe-text-group">
+            <p className="cringe-text">
+              You've seen the "ALPHA" bullshit. The fake gurus. The rented Lambos. That's not us. We're here to help you improve your life. Still think it's cringe? That's fine. We're not here to impress you.
+            </p>
+          </div>
+        </div>
 
-        <section className="fifth-section">
-          <button className="final-action-btn" onClick={() => navigate('/courses')}>
-            <h2 className="final-action-title">TAKE ACTION BEFORE IT'S TOO LATE.</h2>
-          </button>
+        {cringeModalOpen && (
+          <div className="modal-overlay" onClick={() => setCringeModalOpen(false)}>
+            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+              <h3 style={{ marginTop: 0, marginBottom: '1rem', color: '#fff', fontSize: '1.25rem' }}>Credits & Disclaimer</h3>
+              <p style={{ color: 'rgba(255, 255, 255, 0.7)', fontSize: '0.9rem', lineHeight: '1.5', marginBottom: '1rem' }}>
+                The visual content featured in this section has been curated from public platforms, including YouTube and Instagram, and subsequently modified for educational and illustrative purposes.
+              </p>
+              <p style={{ color: 'rgba(255, 255, 255, 0.7)', fontSize: '0.9rem', lineHeight: '1.5', marginBottom: '2rem' }}>
+                We deeply respect the intellectual property of all original creators. Should any copyright holder wish to request the removal of their content or discuss compensation, please contact us and we will promptly address the request.
+              </p>
+              <button className="modal-close-btn" onClick={() => setCringeModalOpen(false)}>
+                Close
+              </button>
+            </div>
+          </div>
+        )}
+      </section>
+
+      <section className="fifth-section">
+        <button className="final-action-btn" onClick={() => navigate('/courses')}>
+          <h2 className="final-action-title">TAKE ACTION BEFORE IT'S TOO LATE.</h2>
+        </button>
       </section>
     </div>
   );
