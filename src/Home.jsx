@@ -170,6 +170,7 @@ function Home() {
   const [videoCanPlay, setVideoCanPlay] = useState(false);
   const [cringeModalOpen, setCringeModalOpen] = useState(false);
   const [benefitsModalOpen, setBenefitsModalOpen] = useState(false);
+  const [fundamentalsModalOpen, setFundamentalsModalOpen] = useState(false);
 
   const videoRef = useRef(null);
 
@@ -378,7 +379,7 @@ function Home() {
       <section className="fourth-section">
         <div className="section-title-group">
           <h2 className="section-title">
-            Your <span className="clickbait-red">DAD</span> is off the clock. We'll take it from here.
+            Your <span className="clickbait-blue">DAD</span> is off the clock. We'll take it from here.
           </h2>
         </div>
         <div className="carousel-wrapper-padding" style={{ width: '100%' }}>
@@ -458,7 +459,33 @@ function Home() {
               </h3>
             </div>
           </div>
+
+          <div className="fundamentals-caption-row">
+            <button
+              className="disclaimer-link"
+              onClick={() => setFundamentalsModalOpen(true)}
+            >
+              Credits & Disclaimer
+            </button>
+          </div>
         </div>
+
+        {fundamentalsModalOpen && (
+          <div className="modal-overlay" onClick={() => setFundamentalsModalOpen(false)}>
+            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+              <h3 style={{ marginTop: 0, marginBottom: '1rem', color: '#fff', fontSize: '1.25rem' }}>Credits & Disclaimer</h3>
+              <p style={{ color: 'rgba(255, 255, 255, 0.7)', fontSize: '0.9rem', lineHeight: '1.5', marginBottom: '1rem' }}>
+                The visual content featured in this section has been curated from public platforms, including YouTube and Instagram, and subsequently modified for educational and illustrative purposes.
+              </p>
+              <p style={{ color: 'rgba(255, 255, 255, 0.7)', fontSize: '0.9rem', lineHeight: '1.5', marginBottom: '2rem' }}>
+                We deeply respect the intellectual property of all original creators. Should any copyright holder wish to request the removal of their content or discuss compensation, please contact us and we will promptly address the request.
+              </p>
+              <button className="modal-close-btn" onClick={() => setFundamentalsModalOpen(false)}>
+                Close
+              </button>
+            </div>
+          </div>
+        )}
       </section>
 
       <section className="third-section">
@@ -473,7 +500,7 @@ function Home() {
       <section className="benefits-section">
         <div className="benefits-container">
           <div className="section-title-group">
-            <h2 className="section-title">WHAT DO YOU GET OUT OF THIS?</h2>
+            <h2 className="section-title">What you get at the end of this.</h2>
           </div>
 
           <div className="benefits-grid">
