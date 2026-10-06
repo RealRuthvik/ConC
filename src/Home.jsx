@@ -212,7 +212,10 @@ function Home() {
         videoRef.current.play().catch(e => console.error("Play failed:", e));
       }
     } else {
-      setDesktopIndex(prev => (prev + 1) % desktopVideos.length);
+      setIsVideoReady(false);
+      setTimeout(() => {
+        setDesktopIndex(prev => (prev + 1) % desktopVideos.length);
+      }, 700);
     }
   };
 
@@ -244,6 +247,13 @@ function Home() {
         <div className="hero-video-side">
           <div className="video-wrapper-container">
             <div className="video-wrapper">
+              <img 
+                src={getAssetUrl('/placeholder.png')}
+                alt="Hercules statue"
+                className={`hero-placeholder-img ${!isVideoReady ? 'placeholder-visible' : 'placeholder-hidden'}`}
+                draggable={false}
+                loading="eager"
+              />
               <a 
                 href="https://www.youtube.com/@BenLionelScott"
                 target="_blank"
@@ -262,6 +272,9 @@ function Home() {
                 muted={isMuted}
                 onEnded={handleVideoEnd}
                 onCanPlay={handleCanPlay}
+                onPlaying={() => setIsVideoReady(true)}
+                onWaiting={() => setIsVideoReady(false)}
+                onError={() => setIsVideoReady(false)}
                 onLoadedData={() => setIsVideoReady(true)}
                 onPlay={() => setIsPlaying(true)}
                 onPause={() => setIsPlaying(false)}
