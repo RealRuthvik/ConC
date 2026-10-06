@@ -134,9 +134,19 @@ function Home() {
   const [isMuted, setIsMuted] = useState(true); 
   const [isPlaying, setIsPlaying] = useState(true);
   const [isVideoReady, setIsVideoReady] = useState(false);
+  const [initialDelayPassed, setInitialDelayPassed] = useState(false);
+  const [videoCanPlay, setVideoCanPlay] = useState(false);
   const [cringeModalOpen, setCringeModalOpen] = useState(false);
 
   const videoRef = useRef(null);
+
+  // Hold placeholder image for at least 3 seconds on initial load
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setInitialDelayPassed(true);
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     const handleResize = () => {
@@ -185,18 +195,43 @@ function Home() {
   }, []);
 
   useEffect(() => {
-    setIsVideoReady(false); 
+    setIsVideoReady(false);
+    setVideoCanPlay(false);
     if (videoRef.current) {
       videoRef.current.load();
     }
   }, [currentVideo]);
 
   const handleCanPlay = () => {
-    setIsVideoReady(true);
-    if (videoRef.current) {
-      videoRef.current.play().catch(e => console.error("Play failed:", e));
-    }
+    setVideoCanPlay(true);
   };
+
+  // Only transition to video and start playback once 3 seconds have elapsed AND video is ready
+  useEffect(() => {
+    if (initialDelayPassed && videoCanPlay) {
+      if (videoRef.current) {
+        videoRef.current.muted = isMuted;
+        videoRef.current.volume = 0.3;
+        videoRef.current.currentTime = 0;
+        const playPromise = videoRef.current.play();
+        if (playPromise !== undefined) {
+          playPromise
+            .then(() => {
+              setIsVideoReady(true);
+              setIsPlaying(true);
+            })
+            .catch((err) => {
+              console.warn("Autoplay or play call prevented:", err);
+              setIsVideoReady(true);
+            });
+        } else {
+          setIsVideoReady(true);
+        }
+      } else {
+        setIsVideoReady(true);
+      }
+    }
+  }, [initialDelayPassed, videoCanPlay]);
 
   useEffect(() => {
     if (videoRef.current) {
@@ -253,6 +288,7 @@ function Home() {
                 className={`hero-placeholder-img ${!isVideoReady ? 'placeholder-visible' : 'placeholder-hidden'}`}
                 draggable={false}
                 loading="eager"
+                fetchPriority="high"
               />
               <a 
                 href="https://www.youtube.com/@BenLionelScott"
@@ -266,16 +302,14 @@ function Home() {
               <video 
                 ref={videoRef}
                 src={currentVideo}
+                preload="auto"
                 playsInline
-                autoPlay
                 loop={isMobile}
                 muted={isMuted}
                 onEnded={handleVideoEnd}
                 onCanPlay={handleCanPlay}
-                onPlaying={() => setIsVideoReady(true)}
-                onWaiting={() => setIsVideoReady(false)}
+                onLoadedData={handleCanPlay}
                 onError={() => setIsVideoReady(false)}
-                onLoadedData={() => setIsVideoReady(true)}
                 onPlay={() => setIsPlaying(true)}
                 onPause={() => setIsPlaying(false)}
                 onVolumeChange={(e) => setIsMuted(e.target.muted)}
