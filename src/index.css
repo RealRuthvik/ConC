@@ -273,8 +273,8 @@ img {
   font-style: italic;
 }
 
-.third-section {
-
+.third-section,
+.fourth-section {
   padding-top: 10vh;
   padding-bottom: 8vh;
   justify-content: flex-start;
@@ -300,8 +300,6 @@ img {
   text-align: left;
   font-style: italic;
 }
-
-.fourth-section {}
 
 .fundamentals-section {
   padding: 3vh 5vw;

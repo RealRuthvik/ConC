@@ -343,7 +343,14 @@ function Home() {
       </section>
 
         <section className="fourth-section">
-          <ImageCarousel items={section4Carousel} maxWidth="100%" />
+          <div className="section-title-group">
+            <h2 className="section-title">
+              YOUR <span className="clickbait-red">DAD'S</span> OFF THE CLOCK. WE'LL TAKE IT FROM HERE.
+            </h2>
+          </div>
+          <div className="carousel-wrapper-padding" style={{ width: '100%' }}>
+            <ImageCarousel items={section4Carousel} />
+          </div>
         </section>
 
         <section className="third-section">
