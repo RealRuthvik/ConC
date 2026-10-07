@@ -1,4 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { auth, db, googleProvider } from './firebase';
+import { onAuthStateChanged, signInWithPopup, signOut } from 'firebase/auth';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
 
 const AuthContext = createContext();
 
@@ -7,49 +10,62 @@ export const useAuth = () => useContext(AuthContext);
 export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [userData, setUserData] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Mock check for existing session
-    const savedUser = localStorage.getItem('mockUser');
-    if (savedUser) {
-      const parsed = JSON.parse(savedUser);
-      setCurrentUser({ uid: '123', email: parsed.email });
-      setUserData(parsed);
-    }
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      setCurrentUser(user);
+      if (user) {
+        const docRef = doc(db, 'users', user.uid);
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+          setUserData(docSnap.data());
+        }
+      } else {
+        setUserData(null);
+      }
+      setLoading(false);
+    });
+    return unsubscribe;
   }, []);
 
-  const signup = async (email, password, status = 'Free') => {
-    const data = { email, status };
-    localStorage.setItem('mockUser', JSON.stringify(data));
-    setCurrentUser({ uid: '123', email });
-    setUserData(data);
-  };
-
   const loginWithGoogle = async (status = 'Free') => {
-    const data = { email: 'user@example.com', status };
-    localStorage.setItem('mockUser', JSON.stringify(data));
-    setCurrentUser({ uid: '123', email: data.email });
-    setUserData(data);
+    try {
+      const result = await signInWithPopup(auth, googleProvider);
+      const docRef = doc(db, 'users', result.user.uid);
+      const docSnap = await getDoc(docRef);
+      if (!docSnap.exists()) {
+        const newData = {
+          email: result.user.email,
+          status,
+          createdAt: new Date().toISOString()
+        };
+        await setDoc(docRef, newData);
+        setUserData(newData);
+      } else {
+        // If account exists, we could update the status here if we wanted
+        // For now, let's just log them in and fetch their data
+        setUserData(docSnap.data());
+      }
+    } catch (error) {
+      console.error("Error signing in with Google", error);
+    }
   };
 
   const logout = () => {
-    localStorage.removeItem('mockUser');
-    setCurrentUser(null);
-    setUserData(null);
+    return signOut(auth);
   };
 
   const updateStatus = async (status) => {
-    if (userData) {
-      const updated = { ...userData, status };
-      localStorage.setItem('mockUser', JSON.stringify(updated));
-      setUserData(updated);
+    if (currentUser) {
+      await setDoc(doc(db, 'users', currentUser.uid), { status }, { merge: true });
+      setUserData(prev => ({ ...prev, status }));
     }
   };
 
   const value = {
     currentUser,
     userData,
-    signup,
     loginWithGoogle,
     logout,
     updateStatus
@@ -57,7 +73,7 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider value={value}>
-      {children}
+      {!loading && children}
     </AuthContext.Provider>
   );
 };
