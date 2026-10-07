@@ -600,7 +600,7 @@ function Home() {
             <h2 className="pricing-title">START WHERE YOU ARE.</h2>
             <p className="pricing-subtitle" style={{ color: '#aaa', fontSize: '1.2rem', marginTop: '0.5rem' }}>Take the first step for free. Go all in when you're ready.</p>
           </div>
-          
+
           <div className="pricing-grid">
             <div className="pricing-col free-col">
               <div className="ref-card free-ref-card">
@@ -609,6 +609,9 @@ function Home() {
                   <span className="ref-currency">$</span>
                   <span className="ref-price">0</span>
                   <span className="ref-cents">.00</span>
+                  <span className="ref-or">or</span>
+                  <span className="ref-currency">₹</span>
+                  <span className="ref-price">0</span>
                 </div>
                 <ul className="ref-features">
                   <li>Selected Grooming material</li>
@@ -627,9 +630,12 @@ function Home() {
                   <span className="ref-currency">$</span>
                   <span className="ref-price">2</span>
                   <span className="ref-cents">.00</span>
-                  <span className="ref-rupee"> / ₹99</span>
+                  <span className="ref-or">or</span>
+                  <span className="ref-currency">₹</span>
+                  <span className="ref-price">99</span>
                 </div>
                 <ul className="ref-features">
+                  <li>The Better Man Field Guide (Digital Welcome Kit)</li>
                   <li>Full access to all 8 fundamentals</li>
                   <li>IRL side quests</li>
                   <li>Assignments</li>

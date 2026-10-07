@@ -740,12 +740,16 @@ img {
   text-align: center;
 }
 
-.ref-rupee {
-  font-size: 1.5rem;
+.ref-or {
+  font-size: 1.25rem;
   font-weight: 700;
-  color: #aaa;
-  margin-top: 2.25rem;
-  margin-left: 0.5rem;
+  color: #888;
+  margin: 2.25rem 0.75rem 0 0.5rem;
+}
+
+.free-ref-card .ref-or {
+  font-size: 1rem;
+  margin: 1.75rem 0.5rem 0 0.25rem;
 }
 
 .pricing-col {
