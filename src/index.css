@@ -1145,7 +1145,7 @@ img {
     align-items: stretch;
     padding: 3rem 1.25rem 2rem 1.25rem;
     height: auto;
-    min-height: 100svh;
+    min-height: auto;
     box-sizing: border-box;
     overflow: visible;
   }
