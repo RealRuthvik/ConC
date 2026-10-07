@@ -602,37 +602,44 @@ function Home() {
           </div>
           
           <div className="pricing-grid">
-            <div className="ref-card">
-              <h3 className="ref-tier-title">Free</h3>
-              <div className="ref-price-block">
-                <span className="ref-currency">$</span>
-                <span className="ref-price">0</span>
-                <span className="ref-cents">.00</span>
+            <div className="pricing-col free-col">
+              <div className="ref-card free-ref-card">
+                <h3 className="ref-tier-title">Free</h3>
+                <div className="ref-price-block">
+                  <span className="ref-currency">$</span>
+                  <span className="ref-price">0</span>
+                  <span className="ref-cents">.00</span>
+                </div>
+                <ul className="ref-features">
+                  <li>Selected Grooming material</li>
+                  <li>Selected Physique material</li>
+                  <li>Selected Social material</li>
+                </ul>
+                <button className="ref-btn" onClick={() => navigate('/free')}>Get Now</button>
               </div>
-              <ul className="ref-features">
-                <li>Selected Grooming material</li>
-                <li>Selected Physique material</li>
-                <li>Selected Social material</li>
-              </ul>
-              <button className="ref-btn" onClick={() => navigate('/free')}>Get Now</button>
+              <p className="pricing-annotation">No payment information required.</p>
             </div>
 
-            <div className="ref-card">
-              <h3 className="ref-tier-title">The Better Man Bootcamp</h3>
-              <div className="ref-price-block">
-                <span className="ref-currency">$</span>
-                <span className="ref-price">2</span>
-                <span className="ref-cents">.00</span>
+            <div className="pricing-col premium-col">
+              <div className="ref-card">
+                <h3 className="ref-tier-title">The Better Man Bootcamp</h3>
+                <div className="ref-price-block">
+                  <span className="ref-currency">$</span>
+                  <span className="ref-price">2</span>
+                  <span className="ref-cents">.00</span>
+                  <span className="ref-rupee"> / ₹99</span>
+                </div>
+                <ul className="ref-features">
+                  <li>Full access to all 8 fundamentals</li>
+                  <li>IRL side quests</li>
+                  <li>Assignments</li>
+                  <li>Progress tracking</li>
+                  <li>Monthly challenges</li>
+                  <li>Private community</li>
+                </ul>
+                <button className="ref-btn accent-btn" onClick={() => navigate('/courses')}>Get Now</button>
               </div>
-              <ul className="ref-features">
-                <li>Full access to all 8 fundamentals</li>
-                <li>IRL side quests</li>
-                <li>Assignments</li>
-                <li>Progress tracking</li>
-                <li>Monthly challenges</li>
-                <li>Private community</li>
-              </ul>
-              <button className="ref-btn accent-btn" onClick={() => navigate('/courses')}>Get Now</button>
+              <p className="pricing-annotation">One-time payment · No subscription</p>
             </div>
           </div>
         </div>

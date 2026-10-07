@@ -737,13 +737,58 @@ img {
   font-size: 1.1rem;
   font-weight: 700;
   cursor: pointer;
-  transition: all 0.2s ease;
   text-align: center;
 }
 
-.ref-btn:hover {
-  background: #fff;
-  color: #000;
+.ref-rupee {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #aaa;
+  margin-top: 2.25rem;
+  margin-left: 0.5rem;
+}
+
+.pricing-col {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.pricing-annotation {
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  color: #666;
+  text-align: center;
+}
+
+.free-ref-card {
+  padding: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.free-ref-card .ref-tier-title {
+  font-size: 1.25rem;
+}
+
+.free-ref-card .ref-currency {
+  font-size: 1.5rem;
+}
+
+.free-ref-card .ref-price {
+  font-size: 3.5rem;
+}
+
+.free-ref-card .ref-cents {
+  font-size: 1rem;
+}
+
+.free-ref-card .ref-features li {
+  font-size: 0.9rem;
+}
+
+.free-ref-card .ref-btn {
+  font-size: 1rem;
+  padding: 0.6rem;
 }
 
 .opacity-100 {
