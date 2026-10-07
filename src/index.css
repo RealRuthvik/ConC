@@ -551,7 +551,7 @@ img {
 
 .reality-image-box {
   width: 100%;
-  max-width: 960px;
+  max-width: 760px;
   align-self: center;
   margin: 0 auto 0.75rem auto;
   display: flex;
@@ -584,9 +584,19 @@ img {
   margin-top: 0.4rem;
 }
 
+.punchy-text-title {
+  font-size: 1.85rem;
+  font-weight: 700;
+  line-height: 1.25;
+  color: #ffffff;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  text-align: left;
+}
+
 .reality-text-group {
   width: 100%;
-  max-width: 960px;
+  max-width: 760px;
   align-self: center;
   margin: 0 auto;
   display: flex;
@@ -1093,9 +1103,9 @@ img {
   }
 
   .reality-image-box {
-    width: 100%;
+    width: 92%;
     max-width: 100%;
-    margin-bottom: 0.75rem;
+    margin: 0 auto 0.75rem auto;
   }
 
   .reality-image-wrapper {
@@ -1108,8 +1118,15 @@ img {
     margin-top: 0.4rem;
   }
 
+  .punchy-text-title {
+    font-size: 1.45rem;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
   .reality-text-group {
-    width: 100%;
+    width: 92%;
+    margin: 0 auto;
     max-width: 100%;
   }
 

@@ -569,8 +569,9 @@ function Home() {
           </div>
 
           <div className="reality-text-group">
+            <h3 className="punchy-text-title">The internet is full of advice. <span className="clickbait-red">Most of it is garbage.</span></h3>
             <p className="reality-text">
-              You've seen the "ALPHA" bullshit. The fake gurus. The rented Lambos. That's not us. We're here to help you improve your life. Still think it's cringe? That's fine. We're not here to impress you.
+              We filter it for you — combining research, expert knowledge, and the best creators in the space to give you advice that's <span className="clickbait-blue">actually worth following</span>.
             </p>
           </div>
         </div>
