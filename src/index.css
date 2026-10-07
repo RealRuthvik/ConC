@@ -47,13 +47,12 @@ img {
 }
 
 .hero-section,
-.second-section,
-.third-section,
-.fourth-section,
+.dad-section,
+.what-works-section,
 .fundamentals-section,
 .benefits-section,
 .reality-section,
-.fifth-section {
+.cta-section {
   scroll-snap-align: start;
   scroll-snap-stop: always;
   height: 100vh;
@@ -132,7 +131,7 @@ img {
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
 }
 
-.second-section {}
+
 
 .section-title-group {
   margin-bottom: 3rem;
@@ -270,8 +269,8 @@ img {
   font-style: italic;
 }
 
-.third-section,
-.fourth-section {
+.what-works-section,
+.dad-section {
   padding-top: 10vh;
   padding-bottom: 8vh;
   justify-content: flex-start;
@@ -601,7 +600,7 @@ img {
   text-align: left;
 }
 
-.fifth-section {}
+.cta-section {}
 
 .final-action-title {
   font-size: 4.5rem;
@@ -974,13 +973,12 @@ img {
     scroll-snap-type: none;
   }
 
-  .second-section,
-  .third-section,
-  .fourth-section,
+  .dad-section,
+  .what-works-section,
   .fundamentals-section,
   .reality-section,
   .benefits-section,
-  .fifth-section {
+  .cta-section {
     padding-top: 4rem;
     padding-bottom: 4rem;
     justify-content: center;
@@ -990,8 +988,8 @@ img {
     scroll-snap-align: none;
   }
 
-  .third-section,
-  .fourth-section {
+  .what-works-section,
+  .dad-section {
     padding-left: 0 !important;
     padding-right: 0 !important;
     min-height: auto;

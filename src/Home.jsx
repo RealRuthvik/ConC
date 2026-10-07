@@ -193,7 +193,7 @@ function Home() {
   const currentVideo = isMobile ? mobileVideo : desktopVideos[desktopIndex];
   const showCredit = !isMobile;
 
-  const section3Carousel = [
+  const whatWorksCarousel = [
     {
       image: getAssetUrl(isMobile ? '/mob5.png' : '/homepage-image-1.png'),
       caption: 'Studies show women are attracted to more than just a man’s face. Click to view the study.',
@@ -206,7 +206,7 @@ function Home() {
     }
   ];
 
-  const section4Carousel = [
+  const dadCarousel = [
     { image: getAssetUrl(isMobile ? '/mob1.png' : '/homepage-image-4.png') },
     { image: getAssetUrl(isMobile ? '/mob2.png' : '/homepage-image-6.png') },
     { image: getAssetUrl(isMobile ? '/mob3.png' : '/homepage-image-5.png') },
@@ -376,14 +376,14 @@ function Home() {
         </div>
       </section>
 
-      <section className="fourth-section">
+      <section className="dad-section">
         <div className="section-title-group">
           <h2 className="section-title">
             Your <span className="clickbait-blue">DAD</span> is off the clock. We'll take it from here.
           </h2>
         </div>
         <div className="carousel-wrapper-padding" style={{ width: '100%' }}>
-          <ImageCarousel items={section4Carousel} />
+          <ImageCarousel items={dadCarousel} />
         </div>
       </section>
 
@@ -488,12 +488,12 @@ function Home() {
         )}
       </section>
 
-      <section className="third-section">
+      <section className="what-works-section">
         <div className="section-title-group">
           <h2 className="section-title">Know what works and what doesn't.</h2>
         </div>
         <div className="carousel-wrapper-padding" style={{ width: '100%' }}>
-          <ImageCarousel items={section3Carousel} />
+          <ImageCarousel items={whatWorksCarousel} />
         </div>
       </section>
 
@@ -593,7 +593,7 @@ function Home() {
         )}
       </section>
 
-      <section className="fifth-section">
+      <section className="cta-section">
         <button className="final-action-btn" onClick={() => navigate('/courses')}>
           <h2 className="final-action-title">TAKE ACTION BEFORE IT'S TOO LATE.</h2>
         </button>
