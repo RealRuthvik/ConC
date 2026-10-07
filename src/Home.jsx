@@ -18,11 +18,17 @@ const desktopVideos = [
 
 const mobileVideo = 'https://github.com/RealRuthvik/ConC/releases/download/v1.0-assets/ShortFrom1.mp4';
 
-const ImageCarousel = ({ items, intervalMs = 3500, maxWidth = '900px' }) => {
+const ImageCarousel = ({ items, intervalMs = 3500, maxWidth = '900px', onSlideChange }) => {
   const [index, setIndex] = useState(0);
   const [playing, setPlaying] = useState(true);
   const [timeLeft, setTimeLeft] = useState(intervalMs);
   const [modalOpen, setModalOpen] = useState(false);
+
+  useEffect(() => {
+    if (onSlideChange) {
+      onSlideChange(index);
+    }
+  }, [index, onSlideChange]);
 
   useEffect(() => {
     let interval;
@@ -106,10 +112,7 @@ const ImageCarousel = ({ items, intervalMs = 3500, maxWidth = '900px' }) => {
           </button>
         </div>
       </div>
-      <div className="carousel-caption-row" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginTop: '1rem', width: '100%' }}>
-        {currentItem.caption ? (
-          <p className="grid-item-caption" style={{ margin: 0, textAlign: 'left' }}>{currentItem.caption}</p>
-        ) : <div />}
+      <div className="carousel-caption-row" style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'baseline', marginTop: '1rem', width: '100%' }}>
         <button
           className="disclaimer-link"
           onClick={(e) => { e.preventDefault(); setModalOpen(true); }}
@@ -157,6 +160,7 @@ function Home() {
   const navigate = useNavigate();
   const [index, setIndex] = useState(0);
   const [fade, setFade] = useState(true);
+  const [whatWorksIndex, setWhatWorksIndex] = useState(0);
 
   const [isMobile, setIsMobile] = useState(() => {
     return typeof window !== 'undefined' ? window.innerWidth <= 768 : false;
@@ -491,9 +495,12 @@ function Home() {
       <section className="what-works-section">
         <div className="section-title-group">
           <h2 className="section-title">Know <span className="clickbait-blue">WHAT WORKS</span> and <span className="clickbait-red">WHAT DOESN'T</span>.</h2>
+          <p className="section-subtitle" style={{ marginTop: '1rem', marginBottom: '0', minHeight: '3.5rem', color: '#d8d8d8' }}>
+            {whatWorksCarousel[whatWorksIndex]?.caption || ''}
+          </p>
         </div>
         <div className="carousel-wrapper-padding" style={{ width: '100%' }}>
-          <ImageCarousel items={whatWorksCarousel} />
+          <ImageCarousel items={whatWorksCarousel} onSlideChange={setWhatWorksIndex} />
         </div>
       </section>
 
