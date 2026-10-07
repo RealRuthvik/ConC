@@ -171,6 +171,7 @@ function Home() {
   const [realityModalOpen, setRealityModalOpen] = useState(false);
   const [benefitsModalOpen, setBenefitsModalOpen] = useState(false);
   const [fundamentalsModalOpen, setFundamentalsModalOpen] = useState(false);
+  const [termsModalOpen, setTermsModalOpen] = useState(false);
 
   const videoRef = useRef(null);
 
@@ -612,11 +613,13 @@ function Home() {
                   <span className="ref-or">or</span>
                   <span className="ref-currency">₹</span>
                   <span className="ref-price">0</span>
+                  <span className="ref-ps">.00</span>
                 </div>
                 <ul className="ref-features">
-                  <li>Selected Grooming material</li>
-                  <li>Selected Physique material</li>
-                  <li>Selected Social material</li>
+                  <li>"The Better Man Field Guide" (a welcome kit)</li>
+                  <li>Selected material from "Men's Grooming", "A Physique to Admire", and "Confidence & Charisma"</li>
+                  <li>One starter assignment</li>
+                  <li>One monthly challenge</li>
                 </ul>
                 <button className="ref-btn" onClick={() => navigate('/free')}>Get Now</button>
               </div>
@@ -628,28 +631,46 @@ function Home() {
                 <h3 className="ref-tier-title">The Better Man Bootcamp</h3>
                 <div className="ref-price-block">
                   <span className="ref-currency">$</span>
-                  <span className="ref-price">2</span>
-                  <span className="ref-cents">.00</span>
+                  <span className="ref-price">1</span>
+                  <span className="ref-cents">.99</span>
                   <span className="ref-or">or</span>
                   <span className="ref-currency">₹</span>
                   <span className="ref-price">99</span>
+                  <span className="ref-ps">.99</span>
                 </div>
                 <ul className="ref-features">
-                  <li>The Better Man Field Guide (Digital Welcome Kit)</li>
+                  <li>"The Better Man Field Guide" (a welcome kit)</li>
                   <li>Full access to all 8 fundamentals</li>
-                  <li>IRL side quests</li>
-                  <li>Assignments</li>
+                  <li>Updated course content regularly</li>
+                  <li>IRL side quests and weekly tasks</li>
+                  <li>Personal feedback on assignments</li>
                   <li>Progress tracking</li>
-                  <li>Monthly challenges</li>
-                  <li>Private community</li>
+                  <li>Competitive monthly challenges</li>
+                  <li>Access to "The Better Man private community"</li>
+                  <li>All future bootcamp updates included</li>
                 </ul>
                 <button className="ref-btn accent-btn" onClick={() => navigate('/courses')}>Get Now</button>
               </div>
               <p className="pricing-annotation">One-time payment · No subscription</p>
+              <p className="pricing-annotation" style={{ marginTop: '0.25rem', cursor: 'pointer', textDecoration: 'underline' }} onClick={() => setTermsModalOpen(true)}>You agree to these terms by accessing bootcamp.</p>
             </div>
           </div>
         </div>
       </section>
+
+      {termsModalOpen && (
+        <div className="modal-overlay" onClick={() => setTermsModalOpen(false)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()} style={{ maxWidth: '600px', maxHeight: '80vh', overflowY: 'auto' }}>
+            <h3 style={{ marginTop: 0, marginBottom: '1rem', color: '#fff', fontSize: '1.25rem' }}>Terms & Disclaimer</h3>
+            <p style={{ color: 'rgba(255, 255, 255, 0.7)', fontSize: '0.9rem', lineHeight: '1.5', marginBottom: '2rem' }}>
+              By purchasing or accessing The Better Man Bootcamp, you acknowledge that you are purchasing a digital educational product designed to provide practical guidance, curated resources, exercises, and self-improvement material across areas such as grooming, fitness, style, confidence, social skills, dating, mindset, and life. Our content is curated from research, established experts, educators, creators, and publicly available resources, and is organized and presented to help you apply useful information in a practical way; we do not claim that every idea or concept originated with us, and third-party content remains the property of its respective owners. The Bootcamp is provided for educational and informational purposes only and does not constitute medical, psychological, financial, legal, or other professional advice. We make no guarantees regarding specific results, including changes to appearance, confidence, relationships, income, social life, or any other personal outcome — we provide the tools and framework, but the results depend on what you do with them. Your purchase grants you personal access to the materials included with your selected tier and does not permit you to copy, redistribute, resell, or share the content. Because this is a digital product and access may be provided immediately, purchases are generally final and non-refundable once access has been granted, except where we determine a refund is appropriate or where required by applicable law. By completing your purchase, you confirm that you have read, understood, and agreed to these terms.
+            </p>
+            <button className="modal-close-btn" onClick={() => setTermsModalOpen(false)}>
+              Close
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
