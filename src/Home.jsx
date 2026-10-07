@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from './AuthContext';
 
 const lines = [
   "You can't change everything. Start with what you can.",
@@ -180,6 +181,17 @@ function Home() {
   const [benefitsModalOpen, setBenefitsModalOpen] = useState(false);
   const [fundamentalsModalOpen, setFundamentalsModalOpen] = useState(false);
   const [termsModalOpen, setTermsModalOpen] = useState(false);
+  const { loginWithGoogle, currentUser } = useAuth();
+  
+  const handleStartFree = async () => {
+    await loginWithGoogle('Free');
+    navigate('/learn');
+  };
+
+  const handleStartPremium = async () => {
+    await loginWithGoogle('Premium');
+    navigate('/learn');
+  };
 
   const videoRef = useRef(null);
 
@@ -641,7 +653,7 @@ function Home() {
                   <li>One starter assignment</li>
                   <li>One monthly challenge</li>
                 </ul>
-                <button className="ref-btn" onClick={() => navigate('/free')}>Start For Free</button>
+                <button className="ref-btn" onClick={handleStartFree}>Start For Free</button>
               </div>
               <p className="pricing-annotation">No payment information required.</p>
             </div>
@@ -669,7 +681,7 @@ function Home() {
                   <li>Access to "The Better Man private community"</li>
                   <li>All future bootcamp updates included</li>
                 </ul>
-                <button className="ref-btn accent-btn">Enter The Bootcamp</button>
+                <button className="ref-btn accent-btn" onClick={handleStartPremium}>Enter The Bootcamp</button>
               </div>
               <p className="pricing-annotation">One-time payment · No subscription</p>
               <p className="pricing-annotation" style={{ marginTop: '0.25rem', cursor: 'pointer', textDecoration: 'underline' }} onClick={() => setTermsModalOpen(true)}>You agree to these terms by accessing bootcamp.</p>
