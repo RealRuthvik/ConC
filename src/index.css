@@ -55,8 +55,7 @@ img {
 .cta-section {
   scroll-snap-align: start;
   scroll-snap-stop: always;
-  min-height: 100vh;
-  height: auto;
+  height: 100vh;
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
@@ -66,7 +65,7 @@ img {
   align-items: flex-start;
   padding: 5vh 5vw;
   box-sizing: border-box;
-  overflow: visible;
+  overflow: hidden;
 }
 
 .hero-section {
@@ -166,6 +165,9 @@ img {
 
 .section-image-wrapper {
   width: 100%;
+  max-width: 100%;
+  height: auto;
+  max-height: 55vh;
   aspect-ratio: 16 / 9;
   display: flex;
   align-items: center;
@@ -991,11 +993,8 @@ img {
 
   .what-works-section,
   .dad-section {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
+    padding: 4rem 1.25rem;
     min-height: auto;
-    padding-top: 4rem;
-    padding-bottom: 4rem;
   }
 
   .fundamentals-section {
@@ -1129,14 +1128,12 @@ img {
   .section-image-wrapper {
     aspect-ratio: 1 / 1;
     border-radius: 8px;
-    width: 94%;
-    margin: 0 auto;
+    width: 100%;
+    margin: 0;
   }
 
   .section-title-group,
   .carousel-caption-row {
-    padding-left: 5vw;
-    padding-right: 5vw;
     width: 100%;
     box-sizing: border-box;
   }
