@@ -55,7 +55,8 @@ img {
 .cta-section {
   scroll-snap-align: start;
   scroll-snap-stop: always;
-  height: 100vh;
+  min-height: 100vh;
+  height: auto;
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
@@ -65,7 +66,7 @@ img {
   align-items: flex-start;
   padding: 5vh 5vw;
   box-sizing: border-box;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .hero-section {
