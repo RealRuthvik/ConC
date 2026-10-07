@@ -594,10 +594,55 @@ function Home() {
         )}
       </section>
 
-      <section className="cta-section">
-        <button className="final-action-btn" onClick={() => navigate('/courses')}>
-          <h2 className="final-action-title">TAKE ACTION BEFORE IT'S TOO LATE.</h2>
-        </button>
+      <section className="pricing-section">
+        <div className="pricing-container">
+          <div className="section-title-group" style={{ textAlign: 'center', marginBottom: '2rem', width: '100%' }}>
+            <h2 className="section-title">Choose your <span className="clickbait-blue">PATH</span>.</h2>
+          </div>
+          
+          <div className="pricing-grid">
+            <div className="pricing-card free-tier">
+              <div className="pricing-header">
+                <h3>FREE</h3>
+              </div>
+              <div className="pricing-price">
+                <p>Available at $0</p>
+              </div>
+              <div className="pricing-features">
+                <ul>
+                  <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Access to material from GROOMING</li>
+                  <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Access to material from PHYSIQUE</li>
+                  <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Access to material from SOCIAL</li>
+                </ul>
+              </div>
+              <button className="pricing-btn free-btn" onClick={() => navigate('/free')}>
+                START WITH FREE
+              </button>
+            </div>
+
+            <div className="pricing-card premium-tier">
+              <div className="pricing-header">
+                <h3>THE BETTER MAN BOOTCAMP</h3>
+              </div>
+              <div className="pricing-price">
+                <p>Premium Access</p>
+              </div>
+              <div className="pricing-features">
+                <p className="features-subtitle">Everything in Free, plus:</p>
+                <ul>
+                  <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Full access to all fundamentals</li>
+                  <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> IRL side quests & assignments</li>
+                  <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Progress tracker</li>
+                  <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> MONTHLY CHALLENGES</li>
+                  <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> PRIVATE COMMUNITY</li>
+                </ul>
+              </div>
+              <button className="pricing-btn premium-btn" onClick={() => navigate('/courses')}>
+                START BOOTCAMP
+              </button>
+            </div>
+          </div>
+        </div>
       </section>
     </div>
   );

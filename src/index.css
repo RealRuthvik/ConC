@@ -52,7 +52,7 @@ img {
 .fundamentals-section,
 .benefits-section,
 .reality-section,
-.cta-section {
+.pricing-section {
   scroll-snap-align: start;
   scroll-snap-stop: always;
   height: 100vh;
@@ -613,14 +613,144 @@ img {
   text-align: left;
 }
 
-.cta-section {}
+.pricing-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-.final-action-title {
-  font-size: 4.5rem;
-  font-weight: 800;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-  color: #ffffff;
+.pricing-container {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  width: 100%;
+}
+
+.pricing-card {
+  background: rgba(20, 20, 20, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  padding: 3rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(20px);
+}
+
+.pricing-card.free-tier {
+  background: linear-gradient(180deg, rgba(40, 40, 40, 0.8) 0%, rgba(15, 15, 15, 0.8) 100%);
+}
+
+.pricing-card.premium-tier {
+  background: linear-gradient(180deg, rgba(0, 80, 160, 0.15) 0%, rgba(15, 15, 15, 0.8) 100%);
+  border: 1px solid rgba(0, 150, 255, 0.3);
+  box-shadow: 0 0 40px rgba(0, 100, 255, 0.1);
+}
+
+.pricing-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.pricing-header h3 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #fff;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.pricing-price {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.pricing-price p {
+  font-size: 1.25rem;
+  color: #aaa;
+  margin: 0;
+}
+
+.pricing-features {
+  flex-grow: 1;
+  margin-bottom: 2.5rem;
+}
+
+.features-subtitle {
+  font-size: 1rem;
+  color: #aaa;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+}
+
+.pricing-features ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.pricing-features li {
+  display: flex;
+  align-items: flex-start;
+  font-size: 1.1rem;
+  color: #ddd;
+  line-height: 1.4;
+}
+
+.pricing-features li svg {
+  margin-right: 0.75rem;
+  flex-shrink: 0;
+  color: #0099ff;
+  margin-top: 0.15rem;
+}
+
+.pricing-btn {
+  width: 100%;
+  padding: 1.25rem;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.pricing-btn.free-btn {
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.pricing-btn.free-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.pricing-btn.premium-btn {
+  background: #fff;
+  color: #000;
+  border: none;
+}
+
+.pricing-btn.premium-btn:hover {
+  background: #e0e0e0;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
 }
 
 .opacity-100 {
@@ -991,7 +1121,7 @@ img {
   .fundamentals-section,
   .reality-section,
   .benefits-section,
-  .cta-section {
+  .pricing-section {
     padding-top: 4rem;
     padding-bottom: 4rem;
     justify-content: center;
@@ -1134,6 +1264,23 @@ img {
     font-size: 1.1rem;
     line-height: 1.55;
     color: #cccccc;
+  }
+
+  .pricing-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .pricing-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .pricing-header h3 {
+    font-size: 1.5rem;
+  }
+
+  .pricing-features li {
+    font-size: 1rem;
   }
 
   .fundamental-title {
