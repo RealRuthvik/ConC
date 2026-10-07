@@ -596,66 +596,43 @@ function Home() {
 
       <section className="pricing-section">
         <div className="pricing-container">
-          <div className="pricing-header-group">
+          <div className="section-title-group" style={{ textAlign: 'center', marginBottom: '2rem' }}>
             <h2 className="pricing-title">START WHERE YOU ARE.</h2>
-            <p className="pricing-subtitle">Take the first step for free. Go all in when you're ready.</p>
+            <p className="pricing-subtitle" style={{ color: '#aaa', fontSize: '1.2rem', marginTop: '0.5rem' }}>Take the first step for free. Go all in when you're ready.</p>
           </div>
           
           <div className="pricing-grid">
-            <div className="editorial-card free-card">
-              <div className="card-top">
-                <h3 className="tier-name">FREE</h3>
-                <p className="tier-price">$0 / Free</p>
+            <div className="ref-card">
+              <h3 className="ref-tier-title">Free</h3>
+              <div className="ref-price-block">
+                <span className="ref-currency">$</span>
+                <span className="ref-price">0</span>
+                <span className="ref-cents">.00</span>
               </div>
-              <ul className="tier-features">
-                <li>
-                  <svg className="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  Selected Grooming material
-                </li>
-                <li>
-                  <svg className="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  Selected Physique material
-                </li>
-                <li>
-                  <svg className="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  Selected Social material
-                </li>
+              <ul className="ref-features">
+                <li>Selected Grooming material</li>
+                <li>Selected Physique material</li>
+                <li>Selected Social material</li>
               </ul>
-              <button className="editorial-btn free-btn" onClick={() => navigate('/free')}>START FREE</button>
+              <button className="ref-btn" onClick={() => navigate('/free')}>Get Now</button>
             </div>
 
-            <div className="editorial-card premium-card">
-              <div className="recommended-label">RECOMMENDED</div>
-              <div className="card-top">
-                <h3 className="tier-name">THE BETTER MAN BOOTCAMP</h3>
+            <div className="ref-card">
+              <h3 className="ref-tier-title">The Better Man Bootcamp</h3>
+              <div className="ref-price-block">
+                <span className="ref-currency">$</span>
+                <span className="ref-price">2</span>
+                <span className="ref-cents">.00</span>
               </div>
-              <ul className="tier-features">
-                <li>
-                  <svg className="check-icon accent-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  Full access to all 8 fundamentals
-                </li>
-                <li>
-                  <svg className="check-icon accent-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  IRL side quests
-                </li>
-                <li>
-                  <svg className="check-icon accent-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  Assignments
-                </li>
-                <li>
-                  <svg className="check-icon accent-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  Progress tracking
-                </li>
-                <li>
-                  <svg className="check-icon accent-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  Monthly challenges
-                </li>
-                <li>
-                  <svg className="check-icon accent-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  Private community
-                </li>
+              <ul className="ref-features">
+                <li>Full access to all 8 fundamentals</li>
+                <li>IRL side quests</li>
+                <li>Assignments</li>
+                <li>Progress tracking</li>
+                <li>Monthly challenges</li>
+                <li>Private community</li>
               </ul>
-              <button className="editorial-btn premium-btn" onClick={() => navigate('/courses')}>START BOOTCAMP</button>
+              <button className="ref-btn accent-btn" onClick={() => navigate('/courses')}>Get Now</button>
             </div>
           </div>
         </div>
