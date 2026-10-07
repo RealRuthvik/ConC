@@ -596,50 +596,66 @@ function Home() {
 
       <section className="pricing-section">
         <div className="pricing-container">
-          <div className="section-title-group" style={{ textAlign: 'center', marginBottom: '2rem', width: '100%' }}>
-            <h2 className="section-title">Choose your <span className="clickbait-blue">PATH</span>.</h2>
+          <div className="pricing-header-group">
+            <h2 className="pricing-title">START WHERE YOU ARE.</h2>
+            <p className="pricing-subtitle">Take the first step for free. Go all in when you're ready.</p>
           </div>
           
           <div className="pricing-grid">
-            <div className="pricing-card free-tier">
-              <div className="pricing-header">
-                <h3>FREE</h3>
+            <div className="editorial-card free-card">
+              <div className="card-top">
+                <h3 className="tier-name">FREE</h3>
+                <p className="tier-price">$0 / Free</p>
               </div>
-              <div className="pricing-price">
-                <p>Available at $0</p>
-              </div>
-              <div className="pricing-features">
-                <ul>
-                  <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Access to material from GROOMING</li>
-                  <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Access to material from PHYSIQUE</li>
-                  <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Access to material from SOCIAL</li>
-                </ul>
-              </div>
-              <button className="pricing-btn free-btn" onClick={() => navigate('/free')}>
-                START WITH FREE
-              </button>
+              <ul className="tier-features">
+                <li>
+                  <svg className="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  Selected Grooming material
+                </li>
+                <li>
+                  <svg className="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  Selected Physique material
+                </li>
+                <li>
+                  <svg className="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  Selected Social material
+                </li>
+              </ul>
+              <button className="editorial-btn free-btn" onClick={() => navigate('/free')}>START FREE</button>
             </div>
 
-            <div className="pricing-card premium-tier">
-              <div className="pricing-header">
-                <h3>THE BETTER MAN BOOTCAMP</h3>
+            <div className="editorial-card premium-card">
+              <div className="recommended-label">RECOMMENDED</div>
+              <div className="card-top">
+                <h3 className="tier-name">THE BETTER MAN BOOTCAMP</h3>
               </div>
-              <div className="pricing-price">
-                <p>Premium Access</p>
-              </div>
-              <div className="pricing-features">
-                <p className="features-subtitle">Everything in Free, plus:</p>
-                <ul>
-                  <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Full access to all fundamentals</li>
-                  <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> IRL side quests & assignments</li>
-                  <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Progress tracker</li>
-                  <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> MONTHLY CHALLENGES</li>
-                  <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> PRIVATE COMMUNITY</li>
-                </ul>
-              </div>
-              <button className="pricing-btn premium-btn" onClick={() => navigate('/courses')}>
-                START BOOTCAMP
-              </button>
+              <ul className="tier-features">
+                <li>
+                  <svg className="check-icon accent-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  Full access to all 8 fundamentals
+                </li>
+                <li>
+                  <svg className="check-icon accent-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  IRL side quests
+                </li>
+                <li>
+                  <svg className="check-icon accent-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  Assignments
+                </li>
+                <li>
+                  <svg className="check-icon accent-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  Progress tracking
+                </li>
+                <li>
+                  <svg className="check-icon accent-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  Monthly challenges
+                </li>
+                <li>
+                  <svg className="check-icon accent-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  Private community
+                </li>
+              </ul>
+              <button className="editorial-btn premium-btn" onClick={() => navigate('/courses')}>START BOOTCAMP</button>
             </div>
           </div>
         </div>
