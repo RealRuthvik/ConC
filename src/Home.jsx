@@ -195,22 +195,22 @@ function Home() {
 
   const section3Carousel = [
     {
-      image: getAssetUrl('/homepage-image-1.png'),
+      image: getAssetUrl(isMobile ? '/mob5.png' : '/homepage-image-1.png'),
       caption: 'Studies show women are attracted to more than just a man’s face. Click to view the study.',
       link: 'https://pubmed.ncbi.nlm.nih.gov/35179485/'
     },
     {
-      image: getAssetUrl('/homepage-image-3.png'),
+      image: getAssetUrl(isMobile ? '/mob6.png' : '/homepage-image-3.png'),
       caption: 'Stop wasting time on trends that deliver zero results. Click to view the study.',
       link: 'https://pubmed.ncbi.nlm.nih.gov/35179485/'
     }
   ];
 
   const section4Carousel = [
-    { image: getAssetUrl('/homepage-image-4.png') },
-    { image: getAssetUrl('/homepage-image-6.png') },
-    { image: getAssetUrl('/homepage-image-5.png') },
-    { image: getAssetUrl('/homepage-image-7.png') }
+    { image: getAssetUrl(isMobile ? '/mob1.png' : '/homepage-image-4.png') },
+    { image: getAssetUrl(isMobile ? '/mob2.png' : '/homepage-image-6.png') },
+    { image: getAssetUrl(isMobile ? '/mob3.png' : '/homepage-image-5.png') },
+    { image: getAssetUrl(isMobile ? '/mob4.png' : '/homepage-image-7.png') }
   ];
 
   useEffect(() => {

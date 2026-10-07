@@ -1128,9 +1128,8 @@ img {
   }
 
   .section-image-wrapper {
-    aspect-ratio: 4 / 5;
-    border-radius: 8px;
-    background-color: transparent;
+    aspect-ratio: 1 / 1;
+    border-radius: 0;
   }
 
   .section-title-group,
@@ -1144,13 +1143,13 @@ img {
   .hero-section {
     position: relative;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: stretch;
     padding: 3rem 1.25rem 2rem 1.25rem;
-    height: 100svh;
+    height: auto;
     min-height: 100svh;
     box-sizing: border-box;
-    overflow: hidden;
+    overflow: visible;
   }
 
   .hero-content-wrapper {
