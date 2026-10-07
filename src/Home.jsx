@@ -223,13 +223,15 @@ function Home() {
       credit: { text: '@KentuckyBarber', link: 'https://www.instagram.com/grant_thebarber3g' }
     },
     { 
-      image: getAssetUrl(isMobile ? '/mob2.png' : '/homepage-image-6.png')
-    },
-    { 
-      image: getAssetUrl(isMobile ? '/mob3.png' : '/homepage-image-5.png'),
+      image: getAssetUrl(isMobile ? '/mob2.png' : '/homepage-image-5.png'),
       credit: { text: '@KentuckyBarber', link: 'https://www.instagram.com/grant_thebarber3g' }
     },
-    { image: getAssetUrl(isMobile ? '/mob4.png' : '/homepage-image-7.png') }
+    { 
+      image: getAssetUrl(isMobile ? '/mob3.png' : '/homepage-image-6.png') 
+    },
+    { 
+      image: getAssetUrl(isMobile ? '/mob4.png' : '/homepage-image-7.png') 
+    }
   ];
 
   useEffect(() => {
