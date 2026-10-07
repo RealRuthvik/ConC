@@ -66,8 +66,8 @@ const ImageCarousel = ({ items, intervalMs = 3500, maxWidth = '900px' }) => {
           </a>
         </div>
       )}
-      <div className="section-image-wrapper" style={{ position: 'relative' }}>
-        <img src={currentItem.image} alt={currentItem.caption || "Carousel slide"} className="section-image" draggable={false} style={{ display: 'block', width: '100%', height: 'auto', borderRadius: '8px' }} />
+      <div className="section-image-wrapper" style={{ position: 'relative', display: 'flex', justifyContent: 'center' }}>
+        <img src={currentItem.image} alt={currentItem.caption || "Carousel slide"} className="section-image" draggable={false} style={{ display: 'block', maxWidth: '100%', maxHeight: '65vh', width: 'auto', height: 'auto', margin: '0 auto', borderRadius: '8px', objectFit: 'contain' }} />
         
         {playing && (
           <div className="carousel-timer" aria-label="Slide timer">
