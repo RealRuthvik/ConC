@@ -649,7 +649,7 @@ function Home() {
                   <li>Access to "The Better Man private community"</li>
                   <li>All future bootcamp updates included</li>
                 </ul>
-                <button className="ref-btn accent-btn" onClick={() => navigate('/courses')}>Enter The Bootcamp</button>
+                <button className="ref-btn accent-btn" onClick={() => alert('Checkout coming soon!')}>Enter The Bootcamp</button>
               </div>
               <p className="pricing-annotation">One-time payment · No subscription</p>
               <p className="pricing-annotation" style={{ marginTop: '0.25rem', cursor: 'pointer', textDecoration: 'underline' }} onClick={() => setTermsModalOpen(true)}>You agree to these terms by accessing bootcamp.</p>
