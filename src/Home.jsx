@@ -379,7 +379,7 @@ function Home() {
       <section className="dad-section">
         <div className="section-title-group">
           <h2 className="section-title">
-            Your <span className="clickbait-blue">DAD</span> is off the clock. We'll take it from here.
+            Your <span className="clickbait-red">DAD IS OFF</span> the clock. <span className="clickbait-blue">WE'LL TAKE IT</span> from here.
           </h2>
         </div>
         <div className="carousel-wrapper-padding" style={{ width: '100%' }}>
@@ -490,7 +490,7 @@ function Home() {
 
       <section className="what-works-section">
         <div className="section-title-group">
-          <h2 className="section-title">Know what works and what doesn't.</h2>
+          <h2 className="section-title">Know <span className="clickbait-blue">WHAT WORKS</span> and <span className="clickbait-red">WHAT DOESN'T</span>.</h2>
         </div>
         <div className="carousel-wrapper-padding" style={{ width: '100%' }}>
           <ImageCarousel items={whatWorksCarousel} />
@@ -500,7 +500,7 @@ function Home() {
       <section className="benefits-section">
         <div className="benefits-container">
           <div className="section-title-group">
-            <h2 className="section-title">What you get at the end of this.</h2>
+            <h2 className="section-title">What <span className="clickbait-blue">YOU GET</span> at the end of this.</h2>
           </div>
 
           <div className="benefits-grid">
@@ -551,7 +551,7 @@ function Home() {
       <section className="reality-section">
         <div className="reality-container">
           <div className="section-title-group">
-            <h2 className="section-title">THINK THIS IS CRINGE?</h2>
+            <h2 className="section-title">It's not <span className="clickbait-red">THAT</span> kind of course.</h2>
           </div>
 
           <div className="reality-image-box">
