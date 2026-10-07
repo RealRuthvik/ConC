@@ -52,7 +52,7 @@ img {
 .fourth-section,
 .fundamentals-section,
 .benefits-section,
-.cringe-section,
+.reality-section,
 .fifth-section {
   scroll-snap-align: start;
   scroll-snap-stop: always;
@@ -522,7 +522,7 @@ img {
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
 }
 
-.cringe-section {
+.reality-section {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -532,7 +532,7 @@ img {
   padding: 4vh 5vw;
 }
 
-.cringe-container {
+.reality-container {
   width: 100%;
   max-width: 100%;
   margin: 0;
@@ -541,13 +541,13 @@ img {
   align-items: flex-start;
 }
 
-.cringe-container .section-title-group {
+.reality-container .section-title-group {
   width: 100%;
   margin-bottom: 1.25rem;
   text-align: left;
 }
 
-.cringe-image-box {
+.reality-image-box {
   width: 100%;
   max-width: 960px;
   align-self: center;
@@ -557,7 +557,7 @@ img {
   align-items: center;
 }
 
-.cringe-image-wrapper {
+.reality-image-wrapper {
   width: 100%;
   border-radius: 8px;
   overflow: hidden;
@@ -569,20 +569,20 @@ img {
   align-items: center;
 }
 
-.cringe-image {
+.reality-image {
   width: 100%;
   height: auto;
   display: block;
 }
 
-.cringe-caption-row {
+.reality-caption-row {
   display: flex;
   justify-content: flex-end;
   width: 100%;
   margin-top: 0.4rem;
 }
 
-.cringe-text-group {
+.reality-text-group {
   width: 100%;
   max-width: 960px;
   align-self: center;
@@ -591,7 +591,7 @@ img {
   flex-direction: column;
 }
 
-.cringe-text {
+.reality-text {
   font-size: 1.25rem;
   font-weight: 400;
   line-height: 1.6;
@@ -978,13 +978,15 @@ img {
   .third-section,
   .fourth-section,
   .fundamentals-section,
-  .cringe-section,
+  .reality-section,
+  .benefits-section,
   .fifth-section {
-    padding-top: 10vh;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
     justify-content: center;
     align-items: flex-start;
     height: auto;
-    min-height: 100svh;
+    min-height: auto;
     scroll-snap-align: none;
   }
 
@@ -993,12 +995,12 @@ img {
     padding-left: 0 !important;
     padding-right: 0 !important;
     min-height: auto;
-    padding-top: 1.5rem;
-    padding-bottom: 2rem;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
   }
 
   .fundamentals-section {
-    padding: 3.5rem 1.25rem 3rem 1.25rem;
+    padding: 4rem 1.25rem;
     height: auto;
     min-height: auto;
     justify-content: flex-start;
@@ -1035,7 +1037,7 @@ img {
   }
 
   .benefits-section {
-    padding: 3.5rem 1.25rem 3rem 1.25rem;
+    padding: 4rem 1.25rem;
     height: auto;
     min-height: auto;
     justify-content: flex-start;
@@ -1073,47 +1075,47 @@ img {
     margin: 0.5rem auto 0 auto;
   }
 
-  .cringe-section {
-    padding: 3.5rem 1.25rem 3rem 1.25rem;
+  .reality-section {
+    padding: 4rem 1.25rem;
     height: auto;
     min-height: auto;
     justify-content: flex-start;
     align-items: flex-start;
   }
 
-  .cringe-container {
+  .reality-container {
     width: 100%;
     max-width: 100%;
     padding: 0;
     align-items: flex-start;
   }
 
-  .cringe-container .section-title-group {
+  .reality-container .section-title-group {
     margin-bottom: 1.25rem;
   }
 
-  .cringe-image-box {
+  .reality-image-box {
     width: 100%;
     max-width: 100%;
     margin-bottom: 0.75rem;
   }
 
-  .cringe-image-wrapper {
+  .reality-image-wrapper {
     width: 100%;
     max-width: 100%;
     border-radius: 8px;
   }
 
-  .cringe-caption-row {
+  .reality-caption-row {
     margin-top: 0.4rem;
   }
 
-  .cringe-text-group {
+  .reality-text-group {
     width: 100%;
     max-width: 100%;
   }
 
-  .cringe-text {
+  .reality-text {
     font-size: 1.1rem;
     line-height: 1.55;
     color: #cccccc;
@@ -1126,8 +1128,9 @@ img {
   }
 
   .section-image-wrapper {
-    aspect-ratio: 1 / 1;
-    border-radius: 0;
+    aspect-ratio: 4 / 5;
+    border-radius: 8px;
+    background-color: transparent;
   }
 
   .section-title-group,
@@ -1141,13 +1144,13 @@ img {
   .hero-section {
     position: relative;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: stretch;
-    padding: 3rem 1.25rem 0.5rem 1.25rem;
-    height: auto;
-    min-height: auto;
+    padding: 3rem 1.25rem 2rem 1.25rem;
+    height: 100svh;
+    min-height: 100svh;
     box-sizing: border-box;
-    overflow: visible;
+    overflow: hidden;
   }
 
   .hero-content-wrapper {
@@ -1168,7 +1171,7 @@ img {
   }
 
   .main-headline {
-    font-size: 2.3rem;
+    font-size: 3rem;
     line-height: 1.1;
     letter-spacing: -0.02em;
     margin-bottom: 0.4rem;

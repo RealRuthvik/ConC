@@ -168,7 +168,7 @@ function Home() {
   const [isVideoReady, setIsVideoReady] = useState(false);
   const [initialDelayPassed, setInitialDelayPassed] = useState(false);
   const [videoCanPlay, setVideoCanPlay] = useState(false);
-  const [cringeModalOpen, setCringeModalOpen] = useState(false);
+  const [realityModalOpen, setRealityModalOpen] = useState(false);
   const [benefitsModalOpen, setBenefitsModalOpen] = useState(false);
   const [fundamentalsModalOpen, setFundamentalsModalOpen] = useState(false);
 
@@ -548,35 +548,35 @@ function Home() {
         )}
       </section>
 
-      <section className="cringe-section">
-        <div className="cringe-container">
+      <section className="reality-section">
+        <div className="reality-container">
           <div className="section-title-group">
             <h2 className="section-title">THINK THIS IS CRINGE?</h2>
           </div>
 
-          <div className="cringe-image-box">
-            <div className="cringe-image-wrapper">
-              <img src={getAssetUrl('/Final.png')} alt="Think this is cringe?" className="cringe-image" draggable={false} />
+          <div className="reality-image-box">
+            <div className="reality-image-wrapper">
+              <img src={getAssetUrl('/Final.png')} alt="Think this is cringe?" className="reality-image" draggable={false} />
             </div>
-            <div className="cringe-caption-row">
+            <div className="reality-caption-row">
               <button
                 className="disclaimer-link"
-                onClick={() => setCringeModalOpen(true)}
+                onClick={() => setRealityModalOpen(true)}
               >
                 Credits & Disclaimer
               </button>
             </div>
           </div>
 
-          <div className="cringe-text-group">
-            <p className="cringe-text">
+          <div className="reality-text-group">
+            <p className="reality-text">
               You've seen the "ALPHA" bullshit. The fake gurus. The rented Lambos. That's not us. We're here to help you improve your life. Still think it's cringe? That's fine. We're not here to impress you.
             </p>
           </div>
         </div>
 
-        {cringeModalOpen && (
-          <div className="modal-overlay" onClick={() => setCringeModalOpen(false)}>
+        {realityModalOpen && (
+          <div className="modal-overlay" onClick={() => setRealityModalOpen(false)}>
             <div className="modal-content" onClick={(e) => e.stopPropagation()}>
               <h3 style={{ marginTop: 0, marginBottom: '1rem', color: '#fff', fontSize: '1.25rem' }}>Credits & Disclaimer</h3>
               <p style={{ color: 'rgba(255, 255, 255, 0.7)', fontSize: '0.9rem', lineHeight: '1.5', marginBottom: '1rem' }}>
@@ -585,7 +585,7 @@ function Home() {
               <p style={{ color: 'rgba(255, 255, 255, 0.7)', fontSize: '0.9rem', lineHeight: '1.5', marginBottom: '2rem' }}>
                 We deeply respect the intellectual property of all original creators. Should any copyright holder wish to request the removal of their content or discuss compensation, please contact us and we will promptly address the request.
               </p>
-              <button className="modal-close-btn" onClick={() => setCringeModalOpen(false)}>
+              <button className="modal-close-btn" onClick={() => setRealityModalOpen(false)}>
                 Close
               </button>
             </div>
