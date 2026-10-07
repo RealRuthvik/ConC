@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { auth, db, googleProvider } from './firebase';
-import { onAuthStateChanged, signInWithPopup, signOut } from 'firebase/auth';
-import { doc, getDoc, setDoc } from 'firebase/firestore';
+import { onAuthStateChanged, signInWithPopup, signOut, deleteUser } from 'firebase/auth';
+import { doc, getDoc, setDoc, deleteDoc } from 'firebase/firestore';
 
 const AuthContext = createContext();
 
@@ -29,7 +29,7 @@ export const AuthProvider = ({ children }) => {
     return unsubscribe;
   }, []);
 
-  const loginWithGoogle = async (status = 'Free') => {
+  const loginWithGoogle = async (status = 'F') => {
     try {
       const result = await signInWithPopup(auth, googleProvider);
       const docRef = doc(db, 'users', result.user.uid);
@@ -49,6 +49,7 @@ export const AuthProvider = ({ children }) => {
       }
     } catch (error) {
       console.error("Error signing in with Google", error);
+      throw error;
     }
   };
 
@@ -63,12 +64,27 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const deleteAccount = async () => {
+    if (currentUser) {
+      try {
+        await deleteDoc(doc(db, 'users', currentUser.uid));
+        await deleteUser(currentUser);
+        setUserData(null);
+        setCurrentUser(null);
+      } catch (error) {
+        console.error("Error deleting user:", error);
+        throw error;
+      }
+    }
+  };
+
   const value = {
     currentUser,
     userData,
     loginWithGoogle,
     logout,
-    updateStatus
+    updateStatus,
+    deleteAccount
   };
 
   return (

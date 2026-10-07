@@ -183,14 +183,30 @@ function Home() {
   const [termsModalOpen, setTermsModalOpen] = useState(false);
   const { loginWithGoogle, currentUser } = useAuth();
   
+  useEffect(() => {
+    if (currentUser) {
+      navigate('/learn');
+    }
+  }, [currentUser, navigate]);
+  
   const handleStartFree = async () => {
-    await loginWithGoogle('Free');
-    navigate('/learn');
+    try {
+      await loginWithGoogle('F');
+      navigate('/learn');
+    } catch (e) {
+      console.error(e);
+      alert('Login failed. Please check the console for details.');
+    }
   };
 
   const handleStartPremium = async () => {
-    await loginWithGoogle('Premium');
-    navigate('/learn');
+    try {
+      await loginWithGoogle('P');
+      navigate('/learn');
+    } catch (e) {
+      console.error(e);
+      alert('Login failed. Please check the console for details.');
+    }
   };
 
   const videoRef = useRef(null);
