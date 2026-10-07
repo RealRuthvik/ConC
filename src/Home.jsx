@@ -556,7 +556,7 @@ function Home() {
 
           <div className="reality-image-box">
             <div className="reality-image-wrapper">
-              <img src={getAssetUrl('/Final.png')} alt="Think this is cringe?" className="reality-image" draggable={false} />
+              <img src={getAssetUrl(isMobile ? '/finalmob.png' : '/Final.png')} alt="Think this is cringe?" className="reality-image" draggable={false} />
             </div>
             <div className="reality-caption-row">
               <button
