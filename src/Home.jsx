@@ -59,15 +59,16 @@ const ImageCarousel = ({ items, intervalMs = 3500, maxWidth = '900px' }) => {
 
   const content = (
     <>
-      <div className="section-image-wrapper" style={{ position: 'relative' }}>
-        <img src={currentItem.image} alt={currentItem.caption || "Carousel slide"} className="section-image" draggable={false} style={{ display: 'block', width: '100%', height: 'auto', borderRadius: '8px' }} />
-        
-        {currentItem.credit && (
+      {currentItem.credit && (
+        <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '0.4rem', width: '100%' }}>
           <a href={currentItem.credit.link} target="_blank" rel="noopener noreferrer" className="carousel-item-credit">
             {currentItem.credit.text}
           </a>
-        )}
-
+        </div>
+      )}
+      <div className="section-image-wrapper" style={{ position: 'relative' }}>
+        <img src={currentItem.image} alt={currentItem.caption || "Carousel slide"} className="section-image" draggable={false} style={{ display: 'block', width: '100%', height: 'auto', borderRadius: '8px' }} />
+        
         {playing && (
           <div className="carousel-timer" aria-label="Slide timer">
             <svg width="22" height="22" viewBox="0 0 24 24" style={{ display: 'block', filter: 'drop-shadow(0 1px 3px rgba(0,0,0,0.6))' }}>
@@ -222,10 +223,12 @@ function Home() {
       credit: { text: '@KentuckyBarber', link: 'https://www.instagram.com/grant_thebarber3g' }
     },
     { 
-      image: getAssetUrl(isMobile ? '/mob2.png' : '/homepage-image-6.png'),
+      image: getAssetUrl(isMobile ? '/mob2.png' : '/homepage-image-6.png')
+    },
+    { 
+      image: getAssetUrl(isMobile ? '/mob3.png' : '/homepage-image-5.png'),
       credit: { text: '@KentuckyBarber', link: 'https://www.instagram.com/grant_thebarber3g' }
     },
-    { image: getAssetUrl(isMobile ? '/mob3.png' : '/homepage-image-5.png') },
     { image: getAssetUrl(isMobile ? '/mob4.png' : '/homepage-image-7.png') }
   ];
 
