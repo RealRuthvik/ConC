@@ -1313,6 +1313,12 @@ img {
     gap: 1rem;
   }
   
+  .free-col {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 2rem;
+    margin-bottom: 1rem;
+  }
+  
   .pricing-title {
     font-size: 1.75rem;
   }
