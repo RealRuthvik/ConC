@@ -1457,7 +1457,7 @@ img {
     height: 100%;
     max-height: none;
     aspect-ratio: auto;
-    object-fit: cover;
+    object-fit: contain;
     border-radius: 12px;
     -webkit-mask-image: none;
     mask-image: none;
@@ -1474,8 +1474,8 @@ img {
     height: 100%;
     max-height: none;
     aspect-ratio: auto;
-    object-fit: cover;
-    object-position: center top;
+    object-fit: contain;
+    object-position: center;
     border-radius: 12px;
     -webkit-mask-image: none;
     mask-image: none;
