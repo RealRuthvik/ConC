@@ -18,17 +18,11 @@ const desktopVideos = [
 
 const mobileVideo = 'https://github.com/RealRuthvik/ConC/releases/download/v1.0-assets/ShortFrom1.mp4';
 
-const ImageCarousel = ({ items, intervalMs = 3500, maxWidth = '900px', onSlideChange }) => {
+const ImageCarousel = ({ items, intervalMs = 3500, maxWidth = '900px' }) => {
   const [index, setIndex] = useState(0);
   const [playing, setPlaying] = useState(true);
   const [timeLeft, setTimeLeft] = useState(intervalMs);
   const [modalOpen, setModalOpen] = useState(false);
-
-  useEffect(() => {
-    if (onSlideChange) {
-      onSlideChange(index);
-    }
-  }, [index, onSlideChange]);
 
   useEffect(() => {
     let interval;
@@ -112,7 +106,10 @@ const ImageCarousel = ({ items, intervalMs = 3500, maxWidth = '900px', onSlideCh
           </button>
         </div>
       </div>
-      <div className="carousel-caption-row" style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'baseline', marginTop: '1rem', width: '100%' }}>
+      <div className="carousel-caption-row" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginTop: '1rem', width: '100%' }}>
+        {currentItem.caption ? (
+          <p className="grid-item-caption" style={{ margin: 0, textAlign: 'left' }}>{currentItem.caption}</p>
+        ) : <div />}
         <button
           className="disclaimer-link"
           onClick={(e) => { e.preventDefault(); setModalOpen(true); }}
@@ -160,7 +157,6 @@ function Home() {
   const navigate = useNavigate();
   const [index, setIndex] = useState(0);
   const [fade, setFade] = useState(true);
-  const [whatWorksIndex, setWhatWorksIndex] = useState(0);
 
   const [isMobile, setIsMobile] = useState(() => {
     return typeof window !== 'undefined' ? window.innerWidth <= 768 : false;
@@ -495,12 +491,9 @@ function Home() {
       <section className="what-works-section">
         <div className="section-title-group">
           <h2 className="section-title">Know <span className="clickbait-blue">WHAT WORKS</span> and <span className="clickbait-red">WHAT DOESN'T</span>.</h2>
-          <p className="section-subtitle" style={{ marginTop: '1rem', marginBottom: '0', minHeight: '3.5rem', color: '#d8d8d8' }}>
-            {whatWorksCarousel[whatWorksIndex]?.caption || ''}
-          </p>
         </div>
         <div className="carousel-wrapper-padding" style={{ width: '100%' }}>
-          <ImageCarousel items={whatWorksCarousel} onSlideChange={setWhatWorksIndex} />
+          <ImageCarousel items={whatWorksCarousel} />
         </div>
       </section>
 
@@ -578,7 +571,7 @@ function Home() {
           <div className="reality-text-group">
             <h3 className="punchy-text-title">The internet is full of advice. <span className="clickbait-red">Most of it is garbage.</span></h3>
             <p className="reality-text">
-              We filter it for you — combining research, expert knowledge, and the best creators in the space to give you advice that's <span className="clickbait-blue">actually worth following</span>.
+              We bring together the best research and the best creators to give you advice that's <span className="clickbait-blue">actually worth following</span>.
             </p>
           </div>
         </div>
