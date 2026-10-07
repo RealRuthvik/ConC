@@ -59,8 +59,15 @@ const ImageCarousel = ({ items, intervalMs = 3500, maxWidth = '900px' }) => {
 
   const content = (
     <>
-      <div className="section-image-wrapper">
-        <img src={currentItem.image} alt={currentItem.caption || "Carousel slide"} className="section-image" draggable={false} />
+      <div className="section-image-wrapper" style={{ position: 'relative' }}>
+        <img src={currentItem.image} alt={currentItem.caption || "Carousel slide"} className="section-image" draggable={false} style={{ display: 'block', width: '100%', height: 'auto', borderRadius: '8px' }} />
+        
+        {currentItem.credit && (
+          <a href={currentItem.credit.link} target="_blank" rel="noopener noreferrer" className="carousel-item-credit">
+            {currentItem.credit.text}
+          </a>
+        )}
+
         {playing && (
           <div className="carousel-timer" aria-label="Slide timer">
             <svg width="22" height="22" viewBox="0 0 24 24" style={{ display: 'block', filter: 'drop-shadow(0 1px 3px rgba(0,0,0,0.6))' }}>
@@ -198,18 +205,26 @@ function Home() {
     {
       image: getAssetUrl(isMobile ? '/mob5.png' : '/homepage-image-1.png'),
       caption: 'Studies show women are attracted to more than just a man’s face. Click to view the study.',
-      link: 'https://pubmed.ncbi.nlm.nih.gov/35179485/'
+      link: 'https://pubmed.ncbi.nlm.nih.gov/35179485/',
+      credit: { text: '@JeffNippard', link: 'https://www.youtube.com/watch?v=EWC8_vp-bWI' }
     },
     {
       image: getAssetUrl(isMobile ? '/mob6.png' : '/homepage-image-3.png'),
       caption: 'Stop wasting time on trends that deliver zero results. Click to view the study.',
-      link: 'https://pubmed.ncbi.nlm.nih.gov/35179485/'
+      link: 'https://pubmed.ncbi.nlm.nih.gov/35179485/',
+      credit: { text: '@JeffNippard', link: 'https://www.youtube.com/watch?v=EWC8_vp-bWI' }
     }
   ];
 
   const dadCarousel = [
-    { image: getAssetUrl(isMobile ? '/mob1.png' : '/homepage-image-4.png') },
-    { image: getAssetUrl(isMobile ? '/mob2.png' : '/homepage-image-6.png') },
+    { 
+      image: getAssetUrl(isMobile ? '/mob1.png' : '/homepage-image-4.png'),
+      credit: { text: '@KentuckyBarber', link: 'https://www.instagram.com/grant_thebarber3g' }
+    },
+    { 
+      image: getAssetUrl(isMobile ? '/mob2.png' : '/homepage-image-6.png'),
+      credit: { text: '@KentuckyBarber', link: 'https://www.instagram.com/grant_thebarber3g' }
+    },
     { image: getAssetUrl(isMobile ? '/mob3.png' : '/homepage-image-5.png') },
     { image: getAssetUrl(isMobile ? '/mob4.png' : '/homepage-image-7.png') }
   ];
@@ -309,8 +324,8 @@ function Home() {
       <section className="hero-section">
         <div className="hero-content-wrapper">
           <div className="hero-text-side">
-            <h1 className="main-headline">Build yourself. One step at a time.</h1>
-            <p className="main-subheadline">Science Based. Practical. No bullshit</p>
+            <h1 className="main-headline">The Better Man Bootcamp.</h1>
+            <p className="main-subheadline">Science Based. Practical. No bullshit ways to look, feel and live better.</p>
           </div>
         </div>
 
